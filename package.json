@@ -1,0 +1,76 @@
+{
+	"name": "nubo-cli",
+	"version": "0.0.3-test",
+	"license": "MIT",
+	"preferGlobal": true,
+	"bin": {
+		"nubo": "bin/nubo"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"dev": "clear && npm run build && node dist/index.js",
+		"build": "npm-run-all clean tsc",
+		"clean": "rimraf dist/*",
+		"pretest": "npm run build",
+		"test": "xo && ava",
+		"tsc": "tsc",
+		"publish": "npm publish --access public",
+		"prepublishOnly": "npm run build"
+	},
+	"files": [
+		"dist/**/*",
+		"bin/**/*"
+	],
+	"dependencies": {
+		"clear": "^0.1.0",
+		"conf": "^10.0.3",
+		"figlet": "^1.5.2",
+		"import-jsx": "^4.0.0",
+		"ink": "^3.0.9",
+		"meow": "^9.0.0",
+		"react": "^16.14.0"
+	},
+	"ava": {
+		"typescript": {
+			"extensions": [
+				"tsx"
+			],
+			"rewritePaths": {
+				"src/": "dist/"
+			}
+		}
+	},
+	"xo": {
+		"extends": "xo-react",
+		"rules": {
+			"react/prop-types": "off"
+		}
+	},
+	"devDependencies": {
+		"@ava/typescript": "^2.0.0",
+		"@sindresorhus/tsconfig": "^2.0.0",
+		"@types/clear": "^0.1.2",
+		"@types/figlet": "^1.5.4",
+		"@types/react": "^17.0.27",
+		"ava": "^3.15.0",
+		"chalk": "^4.1.2",
+		"eslint-config-xo-react": "^0.25.0",
+		"eslint-plugin-react": "^7.26.1",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"ink-testing-library": "^2.1.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.4.3",
+		"xo": "^0.39.1"
+	},
+	"homepage": "https://github.com/NuboHQ/nubo-cli#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NuboHQ/nubo-cli.git"
+	},
+	"bugs": {
+		"url": "https://github.com/NuboHQ/nubo-cli/issues"
+	}
+}
