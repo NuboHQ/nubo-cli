@@ -1,0 +1,2 @@
+# nubo-cli
+Nubo CLI
