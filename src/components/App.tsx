@@ -3,18 +3,31 @@ import meow from 'meow';
 import chalk from 'chalk';
 import clear from 'clear';
 import figlet from 'figlet';
-import { commandComponents } from './commands';
+import { commandComponents, Login, Logout } from './commands';
+import AuthGuard from './guards/auth/AuthGuard';
 
 interface Props {
 	cli: meow.Result<{}>;
 }
 
 const App: FC<Props> = ({ cli }) => {
+	if (cli.input[0] === 'login') {
+		return <Login />;
+	}
+
+	if (cli.input[0] === 'logout') {
+		return <Logout />;
+	}
+
 	if (cli.input[0]) {
 		const Component = commandComponents[cli.input[0]];
 
 		if (Component) {
-			return <Component cli={cli} />;
+			return (
+				<AuthGuard>
+					<Component cli={cli} />
+				</AuthGuard>
+			);
 		}
 	}
 

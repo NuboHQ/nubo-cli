@@ -1,9 +1,9 @@
 import meow from 'meow';
 import { FC } from 'react';
-
 import Create from './create/Create';
-import Login from './login/Login';
-import Logout from './logout/Logout';
+
+export { default as Login } from './login/Login';
+export { default as Logout } from './logout/Logout';
 
 export interface CommandComponent {
 	cli: meow.Result<{}>;
@@ -11,6 +11,4 @@ export interface CommandComponent {
 
 export const commandComponents: { [key: string]: FC<CommandComponent> } = {
 	create: Create,
-	login: Login,
-	logout: Logout,
 };

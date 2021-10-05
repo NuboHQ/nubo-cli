@@ -1,18 +1,16 @@
 import React, { FC, useEffect } from 'react';
 import { Text, useApp } from 'ink';
-import { CommandComponent } from '..';
-import { removeConfig } from '../../../lib/config';
-// import { setConfig } from '../../../lib/config';
+import { logout } from '../../../lib/auth';
 
-const Logout: FC<CommandComponent> = () => {
+const Logout: FC = () => {
 	const { exit } = useApp();
 
 	useEffect(() => {
-		removeConfig('auth');
+		logout();
 		exit();
 	}, []);
 
-	return <Text>Successfully logged out.</Text>;
+	return <Text>Logout successful.</Text>;
 };
 
 export default Logout;
