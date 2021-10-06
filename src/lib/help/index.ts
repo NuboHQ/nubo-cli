@@ -5,5 +5,5 @@ export const HELP_TEXT = `
 	Examples
 	  $ nubo login
 	  $ nubo logout
-	  $ nubo create node
+	  $ nubo services
 	`;

@@ -4,7 +4,7 @@ import {
 	addDevice,
 	loadDeviceAuthToken,
 	setDeviceAuthToken,
-} from '../../../lib/auth';
+} from '../../../../lib/auth';
 import { useApp, Text } from 'ink';
 import Spinner from 'ink-spinner';
 

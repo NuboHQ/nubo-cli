@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { get } from 'lodash';
-import { getDeviceAuthToken, setDeviceAuthToken } from '../auth';
+import {
+	getDeviceAuthToken,
+	loadDeviceAuthToken,
+	setDeviceAuthToken,
+} from '../auth';
 import config from '../../config';
 
 export type QueryOptions = {
@@ -38,7 +42,7 @@ export const data = async ({
 			get(result, 'data.errors[0].extensions.code') === 'FORBIDDEN' &&
 			retryCount < 1
 		) {
-			const newAuthToken = await getDeviceAuthToken();
+			const newAuthToken = await loadDeviceAuthToken();
 
 			if (newAuthToken) {
 				setDeviceAuthToken(newAuthToken);

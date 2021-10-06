@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { Text, useApp } from 'ink';
-import { logout } from '../../../lib/auth';
+import { logout } from '../../../../lib/auth';
 
 const Logout: FC = () => {
 	const { exit } = useApp();

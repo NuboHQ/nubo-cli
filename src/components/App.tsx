@@ -3,7 +3,8 @@ import meow from 'meow';
 import chalk from 'chalk';
 import clear from 'clear';
 import figlet from 'figlet';
-import { commandComponents, Login, Logout } from './commands';
+import { getCommand } from './commands';
+import ConditionalWrapper from './conditional-wrapper/ConditionalWrapper';
 import AuthGuard from './guards/auth/AuthGuard';
 
 interface Props {
@@ -11,22 +12,19 @@ interface Props {
 }
 
 const App: FC<Props> = ({ cli }) => {
-	if (cli.input[0] === 'login') {
-		return <Login />;
-	}
-
-	if (cli.input[0] === 'logout') {
-		return <Logout />;
-	}
-
 	if (cli.input[0]) {
-		const Component = commandComponents[cli.input[0]];
+		const command = getCommand(cli.input);
 
-		if (Component) {
+		if (command) {
+			const Component = command.component;
+
 			return (
-				<AuthGuard>
+				<ConditionalWrapper
+					condition={!command.withoutAuth}
+					wrapper={(children: any) => <AuthGuard>{children}</AuthGuard>}
+				>
 					<Component cli={cli} />
-				</AuthGuard>
+				</ConditionalWrapper>
 			);
 		}
 	}

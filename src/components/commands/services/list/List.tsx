@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Text } from 'ink';
 import Spinner from 'ink-spinner';
-import { CommandComponent } from '..';
-import { data } from '../../../lib/data';
+import { CommandComponent } from '../..';
+import { data } from '../../../../lib/data';
 import Table from 'ink-table';
 
-const Create: FC<CommandComponent> = () => {
+const List: FC<CommandComponent> = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 	const [services, setServices] = useState([]);
@@ -57,4 +57,4 @@ const Create: FC<CommandComponent> = () => {
 	return <Table data={services} />;
 };
 
-export default Create;
+export default List;
