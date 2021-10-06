@@ -13,25 +13,44 @@ const List: FC<CommandComponent> = () => {
 	const test = useCallback(async () => {
 		try {
 			const query = `
-				query {
-					services {
+				query GetServices($order: JSON) {
+					services (order: $order) {
 						items {
 							nameId
+							type {
+								nameId
+								name
+								data
+							}
 						}
 					}
 				}
 			`;
+			const variables = {
+				order: {
+					nameId: 'asc',
+				},
+			};
 
-			const result = await data({ query });
-			const services = result.data.services.items.map((service: any) => {
-				return {
-					name: service.nameId,
-				};
-			});
+			const result = await data({ query, variables });
+			const services = result.data.services.items.map(
+				(service: any, serviceIndex: number) => {
+					const isWeb = ['app', 'docker-web'].includes(
+						service.type.data.serviceCategoryId
+					);
+
+					return {
+						'': serviceIndex + 1,
+						Name: service.nameId,
+						Type: service.type.name,
+						...(isWeb && { URL: `https://${service.nameId}.nubo.dev` }),
+					};
+				}
+			);
 			setServices(services);
 			setLoading(false);
 		} catch (error: any) {
-			setError(error.message || 'Unknown error');
+			setError('Unable to list services');
 		}
 	}, []);
 
@@ -53,6 +72,8 @@ const List: FC<CommandComponent> = () => {
 			</Text>
 		);
 	}
+
+	if (!services.length) return <Text>No services</Text>;
 
 	return <Table data={services} />;
 };
