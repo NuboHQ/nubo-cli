@@ -1,0 +1,91 @@
+{
+	"name": "nubo-cli",
+	"version": "0.0.4-test",
+	"license": "MIT",
+	"preferGlobal": true,
+	"bin": {
+		"nubo": "bin/nubo"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"dev": "clear && npm run build && node dist/index.js",
+		"build": "npm-run-all clean tsc",
+		"clean": "rimraf dist/*",
+		"pretest": "npm run build",
+		"test": "xo && ava",
+		"tsc": "tsc",
+		"publish": "npm publish --access public",
+		"prepublishOnly": "npm run build"
+	},
+	"files": [
+		"dist/**/*",
+		"bin/**/*"
+	],
+	"dependencies": {
+		"apollo-cache-inmemory": "^1.6.6",
+		"apollo-client": "^2.6.10",
+		"apollo-link-http": "^1.5.17",
+		"axios": "^0.22.0",
+		"clear": "^0.1.0",
+		"conf": "^10.0.3",
+		"email-prompt": "^0.4.0",
+		"figlet": "^1.5.2",
+		"graphql": "^15.6.0",
+		"graphql-tag": "^2.12.5",
+		"import-jsx": "^4.0.0",
+		"ink": "^3.0.9",
+		"ink-spinner": "^4.0.3",
+		"ink-table": "^3.0.0",
+		"ink-text-input": "^4.0.1",
+		"inquirer": "^8.1.5",
+		"lodash": "^4.17.21",
+		"meow": "^9.0.0",
+		"node-fetch": "^3.0.0",
+		"react": "^16.14.0"
+	},
+	"ava": {
+		"typescript": {
+			"extensions": [
+				"tsx"
+			],
+			"rewritePaths": {
+				"src/": "dist/"
+			}
+		}
+	},
+	"xo": {
+		"extends": "xo-react",
+		"rules": {
+			"react/prop-types": "off"
+		}
+	},
+	"devDependencies": {
+		"@ava/typescript": "^2.0.0",
+		"@sindresorhus/tsconfig": "^2.0.0",
+		"@types/clear": "^0.1.2",
+		"@types/figlet": "^1.5.4",
+		"@types/inquirer": "^8.1.3",
+		"@types/lodash": "^4.14.175",
+		"@types/react": "^17.0.27",
+		"ava": "^3.15.0",
+		"chalk": "^4.1.2",
+		"eslint-config-xo-react": "^0.25.0",
+		"eslint-plugin-react": "^7.26.1",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"ink-testing-library": "^2.1.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.4.3",
+		"xo": "^0.39.1"
+	},
+	"homepage": "https://github.com/NuboHQ/nubo-cli#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NuboHQ/nubo-cli.git"
+	},
+	"bugs": {
+		"url": "https://github.com/NuboHQ/nubo-cli/issues"
+	}
+}

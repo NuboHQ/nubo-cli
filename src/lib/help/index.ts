@@ -1,16 +1,4 @@
-# Nubo CLI
-
-## Install
-
-```bash
-$ npm i nubo-cli -g
-```
-
-## CLI
-
-```
-$ nubo --help
-
+export const HELP_TEXT = `
 	Usage
 	  $ nubo <command>
 
@@ -18,4 +6,4 @@ $ nubo --help
 	  $ nubo login
 	  $ nubo logout
 	  $ nubo services
-```
+	`;
