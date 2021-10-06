@@ -2,9 +2,9 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Text } from 'ink';
 import Spinner from 'ink-spinner';
 import { CommandComponent } from '../..';
-import { data } from '../../../../lib/data';
 import { getTypeNameIdFromCli } from './utils';
 import Help from './help/Help';
+// import { addAndUpdateService } from '../../../../lib/services';
 
 const Create: FC<CommandComponent> = ({ cli }) => {
   const typeNameId = getTypeNameIdFromCli(cli);
@@ -12,24 +12,10 @@ const Create: FC<CommandComponent> = ({ cli }) => {
   const [complete, setComplete] = useState(false);
   const [error, setError] = useState('');
 
-  const test = useCallback(async () => {
+  const createService = useCallback(async () => {
     try {
-      const query = `
-				mutation AddService($data: AddServiceDataInput!) {
-					addService(data: $data) {
-						id
-						nameId
-					}
-				}
-			`;
-      const variables = {
-        data: {
-          nameId: 'from-cli',
-          type: { type: 'products', nameId: typeNameId },
-        },
-      };
-
-      await data({ query, variables });
+      console.log(cli.flags);
+      // await addAndUpdateService({ nameId: '' });
       setComplete(true);
       setLoading(false);
     } catch (error: any) {
@@ -38,7 +24,7 @@ const Create: FC<CommandComponent> = ({ cli }) => {
   }, []);
 
   useEffect(() => {
-    test();
+    createService();
   }, []);
 
   if (!typeNameId) {
