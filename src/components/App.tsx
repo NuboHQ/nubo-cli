@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
-import meow from 'meow';
 import chalk from 'chalk';
 import clear from 'clear';
 import figlet from 'figlet';
-import { getCommand } from './commands';
+import { Cli, getCommand } from './commands';
 import ConditionalWrapper from './conditional-wrapper/ConditionalWrapper';
 import AuthGuard from './guards/auth/AuthGuard';
 
 interface Props {
-	cli: meow.Result<{}>;
+	cli: Cli;
 }
 
 const App: FC<Props> = ({ cli }) => {

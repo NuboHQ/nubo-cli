@@ -1,9 +1,11 @@
-import Help from './help/Help';
-import Create from './create/Create';
-import List from './list/List';
+import * as help from './help/Help';
+import * as create from './create/Create';
+import * as list from './list/List';
+import * as remove from './remove/Remove';
 
 export default {
-	Help,
-	Create,
-	List,
+	help,
+	create,
+	list,
+	remove,
 };

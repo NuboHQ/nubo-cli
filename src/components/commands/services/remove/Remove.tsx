@@ -3,11 +3,10 @@ import { Text } from 'ink';
 import Spinner from 'ink-spinner';
 import { CommandComponent } from '../..';
 import { data } from '../../../../lib/data';
-import { getTypeNameIdFromCli } from './utils';
-import Help from './help/Help';
+import { getServiceNameIdFromCli } from './utils';
 
-const Create: FC<CommandComponent> = ({ cli }) => {
-	const typeNameId = getTypeNameIdFromCli(cli);
+const Remove: FC<CommandComponent> = ({ cli }) => {
+	const nameId = getServiceNameIdFromCli(cli);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 
@@ -39,8 +38,8 @@ const Create: FC<CommandComponent> = ({ cli }) => {
 		test();
 	}, []);
 
-	if (!typeNameId) {
-		return <Text color="red">Missing type (i.e. node, postgres)</Text>;
+	if (!nameId) {
+		return <Text color="red">Missing service name</Text>;
 	}
 
 	if (error) {
@@ -58,7 +57,7 @@ const Create: FC<CommandComponent> = ({ cli }) => {
 		);
 	}
 
-	return <Text>Create {typeNameId}</Text>;
+	return <Text>Remove {nameId}</Text>;
 };
 
-export { Create, Help };
+export { Remove };

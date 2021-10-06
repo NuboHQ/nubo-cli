@@ -78,4 +78,4 @@ const List: FC<CommandComponent> = () => {
 	return <Table data={services} />;
 };
 
-export default List;
+export { List };
