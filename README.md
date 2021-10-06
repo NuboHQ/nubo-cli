@@ -11,13 +11,11 @@ $ npm i nubo-cli -g
 ```
 $ nubo --help
 
-  Usage
-    $ nubo
+	Usage
+	  $ nubo <command>
 
-  Options
-    --name  Your name
-
-  Examples
-    $ nubo --name=Nubo
-    Hello, Nubo
+	Examples
+	  $ nubo login
+	  $ nubo logout
+	  $ nubo services
 ```
